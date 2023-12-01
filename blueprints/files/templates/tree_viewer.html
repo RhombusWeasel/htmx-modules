@@ -1,0 +1,30 @@
+{% for folder in folders %}
+  {% if cur_path == '/'.join(folder.split('/')[:-1]) %}
+    <tr
+      class="left"
+      hx-get="/tree/toggle_folder/{{ folder }}"
+      hx-target="#file-explorer"
+    >
+    {% if folder in open_paths %}
+      <td class="width-5"><i class="fas fa-folder-open"></i></td>
+      <td>{{ folder.split('/')[-1] }}</></td>
+    </tr>
+      {% with cur_path=folder, open_paths=open_paths, folders=folders, files=files %}
+        {% include 'tree_viewer.html' %}
+      {% endwith %}
+    {% else %}
+      <td class="width-5"><i class="fas fa-folder"></i></td>
+      <td>{{ folder.split('/')[-1] }}</></td>
+    </tr>
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% for file in files %}
+  {% if cur_path == '/'.join(file.split('/')[:-1]) %}
+    <tr>
+      <td class="width-5"><i class="fas fa-file"></i></td>
+      <td>{{ file.split('/')[-1] }}</>
+      </td>
+    </tr>
+  {% endif %}
+{% endfor %}

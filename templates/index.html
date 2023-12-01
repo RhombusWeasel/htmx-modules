@@ -1,0 +1,18 @@
+<head>
+  <script src="https://unpkg.com/htmx.org@1.9.9"
+    integrity="sha384-QFjmbokDn2DjBjq+fM+8LUIVrAgqcNW2s0PjAxHETgRn9l4fvX31ZxDxvwQnyMOX"
+    crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/1062fc9990.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="master-container">
+  <div class="row">
+    <div class="col width-15" hx-get="/tree/list_files" hx-target="#file-explorer" hx-trigger="load">
+      <h5 class="center">File Explorer</h5>
+      <table>
+        <table-body id="file-explorer">
+        </table-body>
+      </table>
+    </div>
+  </div>
+</body>
